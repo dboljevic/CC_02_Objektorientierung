@@ -66,4 +66,4 @@ public class CarMain {
         System.out.println("Das sind " + c3.getFuelPercentage(drivenKM) + "%");
 
     }
-}:
+}
