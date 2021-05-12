@@ -50,7 +50,7 @@ public class CarMain {
     // Car refactored
     public static void main(String[] args) {
 
-        CarRefactored c3 = new CarRefactored("Toyota", "T1000", 60, 6);
+        CarRefactored c3 = new CarRefactored("Toyotal", "T1000", 60, 6);
         System.out.println(c3.getBrand());
 
         c3.setBrand("AUDI");
@@ -64,6 +64,8 @@ public class CarMain {
         int drivenKM = scanner.nextInt();
         System.out.println(c3.getFuelLevel(drivenKM) + "l noch im Tank.");
         System.out.println("Das sind " + c3.getFuelPercentage(drivenKM) + "%");
+
+
 
     }
 }
