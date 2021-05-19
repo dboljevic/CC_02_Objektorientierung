@@ -1,11 +1,13 @@
 package at.dbo.cc.objects.car;
 
-import java.util.Scanner;
+import java.util.List;
 
 public class CarMain {
 
-    // Car
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
+
+        // Car - erste Schritte
+    /*
 
         Car c1 = new Car();
         c1.brand = "Audi";
@@ -42,15 +44,11 @@ public class CarMain {
         System.out.println("---------------------------------------------------------");
 
         System.out.println(c1.getRemainingRange() + " km");
+*/
 
-
-    }*/
-
-
-    // Car refactored
-    public static void main(String[] args) {
-
-        CarRefactored c3 = new CarRefactored("Toyotal", "T1000", 60, 6);
+        // Car refactored
+    /*
+        CarRefactored c3 = new CarRefactored("Toyota", "T1000", 60, 6);
         System.out.println(c3.getBrand());
 
         c3.setBrand("AUDI");
@@ -64,8 +62,34 @@ public class CarMain {
         int drivenKM = scanner.nextInt();
         System.out.println(c3.getFuelLevel(drivenKM) + "l noch im Tank.");
         System.out.println("Das sind " + c3.getFuelPercentage(drivenKM) + "%");
+*/
+
+
+        // Car mit Motor, Tank, Reifen, etc.
+        Engine e1 = new Engine(140, Engine.TYPE.DIESEL, 6);
+        Tank t1 = new Tank(60);
+
+        RearMirror r1 = new RearMirror(10, 0);
+        RearMirror r2 = new RearMirror(15, -20);
+        RearMirror r3 = new RearMirror(15, 20);
+
+        List<Tyre> tyres = TyreFactory.getTyres(Tyre.TYPE.SUMMER, 16,4);
+
+
+        Car c4 = new Car(e1, t1, "Audi", "A1234", tyres);
+        c4.drive(50);
+        c4.addMirror(r1);
+        c4.addMirror(r2);
+        c4.addMirror(r3);
+        System.out.println("Der Spiegel r2 befindet sich " + c4.getMirrors().get(1).getPosition());
+
+        c4.printTyreStatus();
+
+
+
 
 
 
     }
+
 }

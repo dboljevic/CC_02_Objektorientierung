@@ -1,59 +1,142 @@
 package at.dbo.cc.objects.car;
 
+import java.util.ArrayList;
+import java.util.List;
+
+//public class Car {
+//    private Engine engine;
+//
+//    public startEngine() {
+//        engine.start();
+//    }
+//}
+
 public class Car {
 
-    //*** Instanz bzw. Gedächtnisvariablen bzw. Attribute ***
-
-    // das public dient nur zu Testzwecken und sollte in Zukunft nicht verwendet werden
-    public int fuelConsumption;
-    public int fuelVolume;
-    public int amountOfRepetitions;
+    private Engine engine;
+    private Tank tank;
+    private int amountOfRepetitions;
     private String brand;
-    public String serialNumber;
+    private String serialNumber;
+    private String color;
+    private List<Tyre> tyres;
+    private List<RearMirror> mirrors;
 
+
+    // Konstruktor
+    public Car (Engine engine, Tank tank, String brand, String serialNumber, List<Tyre> tyres) {
+        this.engine = engine;
+        this.brand = brand;
+        this.serialNumber = serialNumber;
+        this.tank = tank;
+        this.mirrors = new ArrayList<>();
+        this.tyres = tyres;
+    }
 
     // Methoden
-    public void drive (){
-        int fuelLevel = this.fuelVolume - this.fuelConsumption;
-        System.out.println("I'm driving home for Christmas");
-    }
 
-
-    public String brake (){
-        String brake = "I brake";
-        return brake;
-    }
-
-
-    public String turboBoost() {
-
-        String turboBoost = "SuperBoostMode!";
-        String noBoost = "Not enough fuel to to SuperBoost";
-
-        int fuelLevel = this.fuelVolume - this.fuelConsumption;
-
-        int fuelVolumePercent = 100 * fuelLevel / this.fuelVolume;
-
-        if (fuelVolumePercent > 10) {
-            return turboBoost;
-        } else {
-            return noBoost;
+    public void printTyreStatus(){
+        for (Tyre tyre: this.tyres) {
+            System.out.println("usage:" + tyre.getUsage());
         }
+    }
+
+
+    public void addMirror (RearMirror rearMirror){
+        this.mirrors.add(rearMirror);
+    }
+
+    public void drive(int speed) {
+        System.out.println("I'm a " + this.brand + ", my color is " + this.color + ", my tank contains " + this.getTank().getFuelVolume() + "l and I've " + this.getEngine().getHorsePower() + " PS");
+
+        getEngine().drive(speed);
 
     }
 
 
-    public int honk (int amountOfRepetitions){
-        for (int i = amountOfRepetitions; i > 0 ; i--) {
-            System.out.print("Tuuut! ");
-        }
-        System.out.println("");
+    public int getFuelLevel(int drivenKM) {
+        int fuelKM = getTank().getFuelVolume() * 100 / getEngine().getFuelConsumption();
+
+        int fuelLevel = (fuelKM - drivenKM) * getEngine().getFuelConsumption() / 100;
+        return fuelLevel;
+    }
+
+    public int getFuelPercentage(int drivenKM) {
+        int fuelLevel = getFuelLevel(drivenKM);
+        return 100 * fuelLevel / getTank().getFuelVolume();
+    }
+
+    public int getRemainingRange() {
+        return getTank().getFuelVolume() * 100 / getEngine().getFuelConsumption();
+    }
+
+
+    // Getter & Setter
+
+
+
+    public int getAmountOfRepetitions() {
         return amountOfRepetitions;
     }
 
+    public void setAmountOfRepetitions(int amountOfRepetitions) {
+        this.amountOfRepetitions = amountOfRepetitions;
+    }
 
-    public int getRemainingRange(){
-        return this.fuelVolume * 100 / this.fuelConsumption;
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public Tank getTank() {
+        return tank;
+    }
+
+    public void setTank(Tank tank) {
+        this.tank = tank;
+    }
+
+    public List<Tyre> getTyres() {
+        return tyres;
+    }
+
+    public void setTyres(List<Tyre> tyres) {
+        this.tyres = tyres;
+    }
+
+    public List<RearMirror> getMirrors() {
+        return mirrors;
+    }
+
+    public void setMirrors(List<RearMirror> mirrors) {
+        this.mirrors = mirrors;
     }
 
 
