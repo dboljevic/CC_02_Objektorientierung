@@ -76,7 +76,7 @@ public class CarMain {
         List<Tyre> tyres = TyreFactory.getTyres(Tyre.TYPE.SUMMER, 16,4);
 
 
-        Car c4 = new Car(e1, t1, "Audi", "A1234", tyres);
+        Car c4 = new Car(e1, t1, "Audi", "blue","A1234", tyres);
         c4.drive(50);
         c4.addMirror(r1);
         c4.addMirror(r2);
@@ -86,7 +86,14 @@ public class CarMain {
         c4.printTyreStatus();
 
 
+        Car c5 = new Car(e1, t1, "Audi", "blue","A12345", tyres);
 
+        // Methode EQUALS testen
+        if (c4.equals(c5)){
+            System.out.println("Die Autos sind gleich");
+        } else{
+            System.out.println("Die Autos sind unterschiedlich");
+        }
 
 
 

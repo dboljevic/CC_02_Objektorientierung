@@ -2,6 +2,7 @@ package at.dbo.cc.objects.car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 //public class Car {
 //    private Engine engine;
@@ -24,9 +25,10 @@ public class Car {
 
 
     // Konstruktor
-    public Car (Engine engine, Tank tank, String brand, String serialNumber, List<Tyre> tyres) {
+    public Car (Engine engine, Tank tank, String brand, String color, String serialNumber, List<Tyre> tyres) {
         this.engine = engine;
         this.brand = brand;
+        this.color = color;
         this.serialNumber = serialNumber;
         this.tank = tank;
         this.mirrors = new ArrayList<>();
@@ -70,10 +72,21 @@ public class Car {
         return getTank().getFuelVolume() * 100 / getEngine().getFuelConsumption();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(engine, car.engine) && Objects.equals(tank, car.tank) && Objects.equals(brand, car.brand) && Objects.equals(color, car.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(engine, tank, brand, color);
+    }
+
 
     // Getter & Setter
-
-
 
     public int getAmountOfRepetitions() {
         return amountOfRepetitions;
